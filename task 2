@@ -5,9 +5,9 @@ ec2-user    #(log in as ec2user)
 sudo su-     #(for root user)
 yum update -y     #(updating machine)
 yum install wget unzip vim -y      #(we have to intall this packages beacause we need this for installing terraform)
-wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-sudo apt update && sudo apt install terraform     #(This link is copied from google for linux operating system for download terraform)
+sudo yum install -y yum-utils shadow-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum -y install terraform #(This link is copied from google for linux operating system for download terraform)
 vi terraformscript.tf       #(for creating terraform file,here we can write terraform script and following is  script untill we reach !wq)
   provider "aws"{
             region="ap-south-1"
